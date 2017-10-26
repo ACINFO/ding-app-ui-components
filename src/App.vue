@@ -1,28 +1,61 @@
 <template>
   <div id="app">
-    <card>123</card>
-    <card></card>
-    <router-view/>
+    <user-card caption="个人信息卡片" title="个人信息" avatar="https://avatars2.githubusercontent.com/u/33087112?s=200&v=4"></user-card>
+    <card caption="标题" title="提示">asdfaddfadfadfasdfasdfadsfasdfasdfasdfadsfasdfadsfdasfdasfasdfsf</card>
+    <card caption="" title="提示">asdfaddfadfadfasdfasdfadsfasdfasdfasdfadsfasdfadsfdasfdasfasdfsf</card>
+    <x-button :isInline="true">确定</x-button>
+    <x-button :isInline="false">真的确定好了吗</x-button>
+    <x-button bgColor="#f00" :isInline="false">真的确定好了吗</x-button>
+    <list-view
+      :listSet="lists"
+      caption="测试列表"
+      footer="没有更多了"
+      itemMargin="0.5rem"
+    ></list-view>
+    <!--<router-view/>-->
   </div>
 </template>
 
 <script>
   import Card from './components/base/Card.vue'
+  import UserCard from './components/ui/UserCard.vue'
+  import XButton from './components/ui/XButton.vue'
+  import ListView from './components/ui/ListView.vue'
+
   export default {
     name: 'app',
     components: {
-      Card
+      Card,
+      UserCard,
+      XButton,
+      ListView
+    },
+    data () {
+      return {
+        lists: [{
+          title: '艾伦·麦席森·图灵',
+          content: '艾伦·麦席森·图灵（Alan Mathison Turing，1912年6月23日－1954年6月7日），' +
+          '英国数学家、逻辑学家，被称为计算机科学之父，人工智能之父。[1] ',
+          image: 'https://avatars2.githubusercontent.com/u/33087112?s=200&v=4'
+        }, {
+          title: '艾伦·麦席森·图灵（Alan Mathison Turing 1912年6月23日',
+          content: '艾伦·麦席森·图灵（Alan Mathison Turing，1912年6月23日－1954年6月7日），英国' +
+          '数学家、逻辑学家，被称为计算机科学之父，人工智能之父。[1] '
+        }, {
+          content: '内容内容'
+        }, {
+          title: '标题4'
+        }]
+      }
     }
   }
 </script>
 
 <style>
 #app {
-  height: 100%;
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   background-color: #efefef;
 }
 </style>
