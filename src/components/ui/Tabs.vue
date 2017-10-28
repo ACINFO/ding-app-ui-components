@@ -19,7 +19,7 @@
   .ui-tabs :first-child{
     border-bottom-left-radius: 2px;
     border-top-left-radius: 2px;
-    border-left: 1px solid #027FFF;
+    border-left: 1px solid #007aff;
   }
   .ui-tabs :last-child {
     border-bottom-right-radius: 2px;
@@ -30,11 +30,11 @@
     padding: 0.5rem 1.75rem;
     font-size: 0.85rem;
     background-color: #fff;
-    border: 1px solid #027FFF;
+    border: 1px solid #007aff;
     border-left: none;
   }
   .tab-item-active {
-    background-color: #027FFF;
+    background-color: #007aff;
     color: #fff;
   }
 </style>

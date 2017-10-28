@@ -5,6 +5,13 @@
       v-model="index"
     ></tabs>
 
+    <swiper
+      :autoPlay="true"
+      :delay="5"
+      :frameSet="frames"
+    ></swiper>
+
+
     <user-card caption="个人信息卡片" title="个人信息" avatar="https://avatars2.githubusercontent.com/u/33087112?s=200&v=4"></user-card>
     <user-card title="个人信息" avatar="https://avatars2.githubusercontent.com/u/33087112?s=200&v=4"></user-card>
     <user-card caption="个人信息卡片" avatar="https://avatars2.githubusercontent.com/u/33087112?s=200&v=4"></user-card>
@@ -30,7 +37,7 @@
   import XButton from './components/ui/XButton.vue'
   import ListView from './components/ui/ListView.vue'
   import Tabs from './components/ui/Tabs.vue'
-
+  import Swiper from './components/ui/Swiper.vue'
   export default {
     name: 'app',
     components: {
@@ -38,11 +45,22 @@
       UserCard,
       XButton,
       ListView,
-      Tabs
+      Tabs,
+      Swiper
     },
     data () {
       return {
         index: 0,
+        frames: [{
+          image: 'https://avatars2.githubusercontent.com/u/33087112?s=200&v=4',
+          caption: '艾伦·麦席森·图灵（Alan Mathison Turing，1912年6月23日－1954年6月7日）'
+        }, {
+          image: 'https://cn.vuejs.org/images/logo.png',
+          caption: '艾伦·麦席森·图灵（Alan Mathison Turing，1912年6月23日－1954年6月7日）'
+        }, {
+          image: 'https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=3938135949,2352115974&fm=173&s=90019D5F4763471984E4E9D703008032&w=500&h=333&img.JPEG',
+          caption: '艾伦·麦席森·图灵（Alan Mathison Turing，1912年6月23日－1954年6月7日）'
+        }],
         tabs: [
           '主页',
           '哈哈',
