@@ -4,7 +4,9 @@
     <div class="listview-wrap">
       <div class="listview-item"
            :style="{marginBottom: itemMargin}"
-           v-for="item in listSet">
+           v-for="(item, i) in listSet"
+          @click="itemClicked(i)"
+      >
         <div class="item-image" v-if="item.image">
           <img :src="item.image"/>
         </div>
@@ -81,14 +83,26 @@
       caption: String,
       listSet: Array,
       footer: String,
-      itemMargin: String
+      itemMargin: String,
+      debug: {
+        type: Boolean,
+        default: false
+      }
     },
     data () {
       return {
       }
     },
     methods: {
-
+      itemClicked (index) {
+        if (index === undefined || index === 'undefined' || index === null) {
+          throw new Error('parameter invalid')
+        }
+        this.debug && (
+          console.log('> debug: clicked index %d', index)
+        )
+        this.$emit('itemClicked', index)
+      }
     }
   }
 </script>

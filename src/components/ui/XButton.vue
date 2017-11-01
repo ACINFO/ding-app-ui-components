@@ -1,7 +1,8 @@
 <template>
   <div class="ui-xbutton"
        :style="{backgroundColor: bgColor}"
-       :class="{inline: isInline}">
+       :class="{inline: isInline, mini: mini}"
+  >
     <div class="ui-xbutton-value">
       <slot></slot>
     </div>
@@ -16,6 +17,20 @@
     background-color: #4AD763;
     padding: 0.75rem 0.8rem;
   }
+
+  .ui-xbutton.default {
+
+  }
+
+  .ui-xbutton.mini {
+    width: 5rem;
+    margin: 0.35rem;
+    padding: 0.35rem 0.45rem;
+    background-color: #007aff;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
   .inline {
     display: inline-block;
   }
@@ -40,7 +55,11 @@
   export default {
     props: {
       isInline: Boolean,
-      bgColor: String
+      bgColor: String,
+      mini: {
+        type: Boolean,
+        default: false
+      }
     },
     data () {
       return {

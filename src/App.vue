@@ -5,26 +5,43 @@
       v-model="index"
     ></tabs>
 
-    <swiper
-      :autoPlay="true"
-      :delay="5"
-      :frameSet="frames"
-    ></swiper>
+    <toast
+      :show="showToast"
+      :delay="1"
+      @close="toastClosed"
+      content="这是一个toast, 一个很长很长很长很长很长很长很长很长的Toast"
+    >
+    </toast>
 
+    <dialog-alert
+      :show="showDialog"
+      content="这是一个可爱的提示框, 你觉得怎么样呢, 哈哈哈哈"
+      @ok="ok"></dialog-alert>
+
+    <dialog-confirm
+      :show="showConfirmDialog"
+      content="我是一个真正的确认框，要点确认按钮哦, :-), <br /> 这是一个html标签测试，<div> 事实证明不可以使用 </div>"
+      @ok="ok"
+      @cancel="ok"
+    >
+    </dialog-confirm>
 
     <user-card caption="个人信息卡片" title="个人信息" avatar="https://avatars2.githubusercontent.com/u/33087112?s=200&v=4"></user-card>
     <user-card title="个人信息" avatar="https://avatars2.githubusercontent.com/u/33087112?s=200&v=4"></user-card>
     <user-card caption="个人信息卡片" avatar="https://avatars2.githubusercontent.com/u/33087112?s=200&v=4"></user-card>
     <card caption="标题" title="提示">asdfaddfadfadfasdfasdfadsfasdfasdfasdfadsfasdfadsfdasfdasfasdfsf</card>
     <card caption="" title="提示">asdfaddfadfadfasdfasdfadsfasdfasdfasdfadsfasdfadsfdasfdasfasdfsf</card>
+    <x-button :isInline="true" :mini="true">请求提交</x-button>
     <x-button :isInline="true">确定</x-button>
     <x-button :isInline="false">真的确定好了吗</x-button>
     <x-button bgColor="#f00" :isInline="false">真的确定好了吗</x-button>
     <list-view
+      :debug="true"
       :listSet="lists"
       caption="测试列表"
       footer="没有更多了"
       itemMargin="0.5rem"
+      @itemClicked="itemClicked"
     ></list-view>
 
     <!--<router-view/>-->
@@ -37,7 +54,13 @@
   import XButton from './components/ui/XButton.vue'
   import ListView from './components/ui/ListView.vue'
   import Tabs from './components/ui/Tabs.vue'
-  import Swiper from './components/ui/Swiper.vue'
+
+  import Toast from './components/ui/toast/toast.vue'
+
+  import DialogAlert from './components/ui/dialog/dialog-alert.vue'
+
+  import DialogConfirm from './components/ui/dialog/dialog-confirm.vue'
+
   export default {
     name: 'app',
     components: {
@@ -46,11 +69,16 @@
       XButton,
       ListView,
       Tabs,
-      Swiper
+      DialogAlert,
+      DialogConfirm,
+      Toast
     },
     data () {
       return {
+        showToast: false,
         index: 0,
+        showDialog: false,
+        showConfirmDialog: false,
         frames: [{
           image: 'https://avatars2.githubusercontent.com/u/33087112?s=200&v=4',
           caption: '艾伦·麦席森·图灵（Alan Mathison Turing，1912年6月23日－1954年6月7日）'
@@ -84,6 +112,38 @@
         }, {
           title: '标题4'
         }]
+      }
+    },
+    created: function () {
+      this.$toast.show({
+        content: 'this is a new toast'
+      })
+    },
+    methods: {
+      itemClicked (index) {
+        console.log('clicked index :%d', index)
+        if (index % 2 === 0) {
+          this.showDialog = !this.showDialog
+        } else {
+          this.showConfirmDialog = !this.showConfirmDialog
+        }
+      },
+      ok () {
+        this.showToast = true
+
+        this.showDialog = false
+        this.showConfirmDialog = false
+
+//        this.$loading.show({
+//          loadingType: 1
+//        })
+//        let _this = this
+//        setTimeout(function () {
+//          _this.$loading.hide()
+//        }, 3000)
+      },
+      toastClosed () {
+        this.showToast = false
       }
     }
   }
